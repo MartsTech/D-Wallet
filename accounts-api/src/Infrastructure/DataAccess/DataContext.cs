@@ -3,7 +3,7 @@ using Domain.Credits;
 using Domain.Debits;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.DataAccess.Factories;
+namespace Infrastructure.DataAccess;
 
 public sealed class DataContext : DbContext
 {

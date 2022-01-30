@@ -1,4 +1,4 @@
-﻿using Infrastructure.DataAccess.Factories;
+﻿using Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.FeatureManagement;

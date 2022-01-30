@@ -2,7 +2,6 @@
 using Domain.Credits;
 using Domain.Debits;
 using Domain.ValueObjects;
-using Infrastructure.DataAccess.Factories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.DataAccess.Repositories;
