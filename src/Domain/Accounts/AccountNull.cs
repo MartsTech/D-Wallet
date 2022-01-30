@@ -6,7 +6,7 @@ namespace Domain.Accounts;
 
 public sealed class AccountNull : IAccount
 {
-    public AccountId AccountId => new AccountId(Guid.Empty);
+    public AccountId AccountId => new(Guid.Empty);
 
     public void Deposit(Credit credit)
     {
@@ -21,4 +21,6 @@ public sealed class AccountNull : IAccount
     public Money GetCurrentBalance() => new Money(0, new Currency());
 
     public bool IsClosingAllowed() => false;
+
+    public static AccountNull Instance { get; } = new AccountNull();
 }
