@@ -43,7 +43,7 @@ public static class SeedData
                    CreditId = DefaultCreditId,
                    AccountId = DefaultAccountId,
                    TransactionDate = DateTime.UtcNow,
-                   Value = 200m,
+                   Value = 400m,
                    Currency = Currency.Dollar.Code
                });
 
@@ -54,7 +54,7 @@ public static class SeedData
                    DebitId = DefaultDebitId,
                    AccountId = DefaultAccountId,
                    TransactionDate = DateTime.UtcNow,
-                   Value = 10m,
+                   Value = 50m,
                    Currency = Currency.Dollar.Code
                });
     }

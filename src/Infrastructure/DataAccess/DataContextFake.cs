@@ -14,14 +14,14 @@ public sealed class DataContextFake
            new CreditId(Guid.NewGuid()),
            SeedData.DefaultAccountId,
            DateTime.Now,
-           400,
+           800,
            Currency.Dollar.Code);
 
         Debit debit = new(
              new DebitId(Guid.NewGuid()),
              SeedData.DefaultAccountId,
              DateTime.Now,
-             100,
+             300,
              Currency.Dollar.Code);
 
         Account account = new(
