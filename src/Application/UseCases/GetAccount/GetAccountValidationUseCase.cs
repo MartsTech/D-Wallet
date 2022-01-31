@@ -1,6 +1,6 @@
-﻿using Application.Services;
+﻿namespace Application.UseCases.GetAccount;
 
-namespace Application.UseCases.GetAccount;
+using Application.Services;
 
 public sealed class GetAccountValidationUseCase : IGetAccountUseCase
 {

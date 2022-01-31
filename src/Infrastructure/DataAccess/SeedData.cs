@@ -1,10 +1,10 @@
-﻿using Domain.Accounts;
+﻿namespace Infrastructure.DataAccess;
+
+using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
-
-namespace Infrastructure.DataAccess;
 
 public static class SeedData
 {

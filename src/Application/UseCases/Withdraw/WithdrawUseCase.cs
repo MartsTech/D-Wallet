@@ -1,9 +1,9 @@
-﻿using Application.Services;
+﻿namespace Application.UseCases.Withdraw;
+
+using Application.Services;
 using Domain.Accounts;
 using Domain.Debits;
 using Domain.ValueObjects;
-
-namespace Application.UseCases.Withdraw;
 
 public sealed class WithdrawUseCase : IWithdrawUseCase
 {
@@ -38,8 +38,7 @@ public sealed class WithdrawUseCase : IWithdrawUseCase
 
     private async Task Withdraw(AccountId accountId, Money withdrawAmount)
     {
-        string externalUserId = _userService
-          .GetCurrentUserId();
+        string externalUserId = _userService.GetCurrentUserId();
 
         IAccount account = await _accountRepository
             .Find(accountId, externalUserId)
@@ -61,8 +60,7 @@ public sealed class WithdrawUseCase : IWithdrawUseCase
                 return;
             }
 
-            await Withdraw(withdrawAccount, debit)
-                .ConfigureAwait(false);
+            await Withdraw(withdrawAccount, debit).ConfigureAwait(false);
 
             _outputPort.Ok(debit, withdrawAccount);
             return;

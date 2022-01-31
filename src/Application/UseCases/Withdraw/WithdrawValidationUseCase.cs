@@ -1,7 +1,7 @@
-﻿using Application.Services;
-using Domain.ValueObjects;
+﻿namespace Application.UseCases.Withdraw;
 
-namespace Application.UseCases.Withdraw;
+using Application.Services;
+using Domain.ValueObjects;
 
 public sealed class WithdrawValidationUseCase : IWithdrawUseCase
 {

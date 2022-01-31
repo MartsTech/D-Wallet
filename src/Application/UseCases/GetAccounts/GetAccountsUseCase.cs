@@ -1,7 +1,7 @@
-﻿using Application.Services;
-using Domain.Accounts;
+﻿namespace Application.UseCases.GetAccounts;
 
-namespace Application.UseCases.GetAccounts;
+using Application.Services;
+using Domain.Accounts;
 
 public sealed class GetAccountsUseCase : IGetAccountsUseCase
 {

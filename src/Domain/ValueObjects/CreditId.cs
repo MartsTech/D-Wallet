@@ -24,7 +24,7 @@ public readonly struct CreditId : IEquatable<CreditId>
         return HashCode.Combine(Id);
     }
 
-    public override string? ToString()
+    public override string ToString()
     {
         return Id.ToString();
     }

@@ -1,9 +1,9 @@
-﻿using Domain.Accounts;
+﻿namespace Infrastructure.DataAccess;
+
+using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
 using Microsoft.EntityFrameworkCore;
-
-namespace Infrastructure.DataAccess;
 
 public sealed class DataContext : DbContext
 {
@@ -25,6 +25,7 @@ public sealed class DataContext : DbContext
         }
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
+
         SeedData.Seed(modelBuilder);
     }
 }

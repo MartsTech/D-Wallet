@@ -1,7 +1,7 @@
-﻿using Domain.Accounts;
-using Domain.ValueObjects;
+﻿namespace Domain.Credits;
 
-namespace Domain.Credits;
+using Domain.Accounts;
+using Domain.ValueObjects;
 
 public class Credit : ICredit
 {

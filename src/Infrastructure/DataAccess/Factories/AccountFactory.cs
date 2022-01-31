@@ -1,9 +1,9 @@
-﻿using Domain.Accounts;
+﻿namespace Infrastructure.DataAccess.Factories;
+
+using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
 using Domain.ValueObjects;
-
-namespace Infrastructure.DataAccess.Factories;
 
 public sealed class AccountFactory : IAccountFactory
 {

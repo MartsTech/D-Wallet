@@ -1,8 +1,8 @@
-﻿using Domain.Accounts;
+﻿namespace Application.UseCases.Transfer;
+
+using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
-
-namespace Application.UseCases.Transfer;
 
 public interface IOutputPort
 {

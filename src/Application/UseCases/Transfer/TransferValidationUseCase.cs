@@ -1,7 +1,7 @@
-﻿using Application.Services;
-using Domain.ValueObjects;
+﻿namespace Application.UseCases.Transfer;
 
-namespace Application.UseCases.Transfer;
+using Application.Services;
+using Domain.ValueObjects;
 
 public sealed class TransferValidationUseCase : ITransferUseCase
 {

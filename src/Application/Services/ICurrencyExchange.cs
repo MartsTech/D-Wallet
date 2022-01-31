@@ -1,6 +1,6 @@
-﻿using Domain.ValueObjects;
+﻿namespace Application.Services;
 
-namespace Application.Services;
+using Domain.ValueObjects;
 
 public interface ICurrencyExchange
 {

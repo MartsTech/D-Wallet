@@ -1,7 +1,7 @@
-﻿using Domain.Accounts;
-using Domain.Debits;
+﻿namespace Application.UseCases.Withdraw;
 
-namespace Application.UseCases.Withdraw;
+using Domain.Accounts;
+using Domain.Debits;
 
 public interface IOutputPort
 {

@@ -1,9 +1,9 @@
-﻿using Domain.Debits;
+﻿namespace Infrastructure.DataAccess.Configurations;
+
+using Domain.Debits;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Infrastructure.DataAccess.Configurations;
 
 public sealed class DebitConfiguration : IEntityTypeConfiguration<Debit>
 {

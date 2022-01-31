@@ -1,9 +1,9 @@
-﻿using Domain.Accounts;
+﻿namespace Infrastructure.DataAccess.Configurations;
+
+using Domain.Accounts;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Infrastructure.DataAccess.Configurations;
 
 public sealed class AccountConfiguration : IEntityTypeConfiguration<Account>
 {

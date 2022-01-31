@@ -1,7 +1,7 @@
-﻿using Application.Services;
-using Domain.ValueObjects;
+﻿namespace Application.UseCases.OpenAccount;
 
-namespace Application.UseCases.OpenAccount;
+using Application.Services;
+using Domain.ValueObjects;
 
 public sealed class OpenAccountValidationUseCase : IOpenAccountUseCase
 {

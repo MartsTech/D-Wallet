@@ -1,10 +1,10 @@
-﻿using Application.Services;
+﻿namespace Application.UseCases.Transfer;
+
+using Application.Services;
 using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
 using Domain.ValueObjects;
-
-namespace Application.UseCases.Transfer;
 
 public sealed class TransferUseCase : ITransferUseCase
 {

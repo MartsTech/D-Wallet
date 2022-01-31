@@ -1,9 +1,9 @@
-﻿using Application.Services;
+﻿namespace Application.UseCases.OpenAccount;
+
+using Application.Services;
 using Domain.Accounts;
 using Domain.Credits;
 using Domain.ValueObjects;
-
-namespace Application.UseCases.OpenAccount;
 
 public sealed class OpenAccountUseCase : IOpenAccountUseCase
 {

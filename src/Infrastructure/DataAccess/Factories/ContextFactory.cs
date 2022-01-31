@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace Infrastructure.DataAccess.Factories;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-
-namespace Infrastructure.DataAccess.Factories;
 
 public sealed class ContextFactory : IDesignTimeDbContextFactory<DataContext>
 {
@@ -11,6 +11,7 @@ public sealed class ContextFactory : IDesignTimeDbContextFactory<DataContext>
         string connectionString = ReadDefaultConnectionStringFromAppSettings();
 
         DbContextOptionsBuilder<DataContext> builder = new();
+
         builder.UseSqlServer(connectionString);
 
         return new DataContext(builder.Options);

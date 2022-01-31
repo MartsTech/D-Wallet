@@ -1,4 +1,6 @@
-﻿using Application.Services;
+﻿namespace WebApi.Modules;
+
+using Application.Services;
 using Application.UseCases.CloseAccount;
 using Application.UseCases.Deposit;
 using Application.UseCases.GetAccount;
@@ -6,8 +8,6 @@ using Application.UseCases.GetAccounts;
 using Application.UseCases.OpenAccount;
 using Application.UseCases.Transfer;
 using Application.UseCases.Withdraw;
-
-namespace WebApi.Modules;
 
 public static class UseCasesExtensions
 {

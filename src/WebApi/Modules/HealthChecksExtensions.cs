@@ -1,4 +1,6 @@
-﻿using Infrastructure.DataAccess;
+﻿namespace WebApi.Modules;
+
+using Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.FeatureManagement;
@@ -6,8 +8,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Mime;
 using WebApi.Modules.Common.FeatureFlags;
-
-namespace WebApi.Modules;
 
 public static class HealthChecksExtensions
 {
@@ -27,7 +27,7 @@ public static class HealthChecksExtensions
 
         if (isEnabled)
         {
-            healthChecks.AddDbContextCheck<DataContext>("DataDbContext");
+            healthChecks.AddDbContextCheck<DataContext>("DataContext");
         }
 
         return services;
@@ -35,8 +35,9 @@ public static class HealthChecksExtensions
 
     public static IApplicationBuilder UseHealthChecks(this IApplicationBuilder app)
     {
-        app.UseHealthChecks("/health",
-            new HealthCheckOptions { ResponseWriter = WriteResponse });
+        HealthCheckOptions options = new() { ResponseWriter = WriteResponse };
+
+        app.UseHealthChecks("/health", options);
 
         return app;
     }
@@ -45,7 +46,7 @@ public static class HealthChecksExtensions
     {
         context.Response.ContentType = MediaTypeNames.Application.Json;
 
-        JObject json = new JObject(
+        JObject json = new(
             new JProperty("status", result.Status.ToString()),
             new JProperty("results", new JObject(result.Entries.Select(pair =>
                 new JProperty(pair.Key, new JObject(
@@ -54,7 +55,6 @@ public static class HealthChecksExtensions
                     new JProperty("data", new JObject(pair.Value.Data.Select(
                         p => new JProperty(p.Key, p.Value))))))))));
 
-        return context.Response.WriteAsync(
-            json.ToString(Formatting.Indented));
+        return context.Response.WriteAsync(json.ToString(Formatting.Indented));
     }
 }

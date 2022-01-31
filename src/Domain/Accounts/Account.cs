@@ -1,8 +1,8 @@
-﻿using Domain.Credits;
+﻿namespace Domain.Accounts;
+
+using Domain.Credits;
 using Domain.Debits;
 using Domain.ValueObjects;
-
-namespace Domain.Accounts;
 
 public class Account : IAccount
 {

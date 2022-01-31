@@ -1,6 +1,6 @@
-﻿using Domain.Accounts;
+﻿namespace Application.UseCases.OpenAccount;
 
-namespace Application.UseCases.OpenAccount;
+using Domain.Accounts;
 
 public sealed class OpenAccountPresenter : IOutputPort
 {

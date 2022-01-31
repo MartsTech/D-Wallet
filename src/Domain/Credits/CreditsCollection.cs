@@ -1,6 +1,6 @@
-﻿using Domain.ValueObjects;
+﻿namespace Domain.Credits;
 
-namespace Domain.Credits;
+using Domain.ValueObjects;
 
 public sealed class CreditsCollection : List<Credit>
 {
@@ -14,6 +14,6 @@ public sealed class CreditsCollection : List<Credit>
          Money total = new(0, this.First().Amount.Currency);
 
         return this.Aggregate(total, (current, credit) => 
-        new Money(current.Amount + credit.Amount.Amount, current.Currency));
+            new Money(current.Amount + credit.Amount.Amount, current.Currency));
     }
 }

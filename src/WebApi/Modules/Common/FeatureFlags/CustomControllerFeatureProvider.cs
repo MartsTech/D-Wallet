@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationParts;
+﻿namespace WebApi.Modules.Common.FeatureFlags;
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.Mvc;
-using System.Collections;
-using System.Reflection;
-
-namespace WebApi.Modules.Common.FeatureFlags;
 
 public sealed class CustomControllerFeatureProvider : IApplicationFeatureProvider<ControllerFeature>
 {

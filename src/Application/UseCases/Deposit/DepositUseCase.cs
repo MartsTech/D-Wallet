@@ -1,9 +1,9 @@
-﻿using Application.Services;
+﻿namespace Application.UseCases.Deposit;
+
+using Application.Services;
 using Domain.Accounts;
 using Domain.Credits;
 using Domain.ValueObjects;
-
-namespace Application.UseCases.Deposit;
 
 public sealed class DepositUseCase : IDepositUseCase
 {

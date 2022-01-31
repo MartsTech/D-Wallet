@@ -1,9 +1,9 @@
-﻿using Application.Services;
+﻿namespace WebApi.Modules;
+
+using Application.Services;
+using WebApi.Modules.Common.FeatureFlags;
 using Infrastructure.CurrencyExchange;
 using Microsoft.FeatureManagement;
-using WebApi.Modules.Common.FeatureFlags;
-
-namespace WebApi.Modules;
 
 public static class CurrencyExchangeExtensions
 {

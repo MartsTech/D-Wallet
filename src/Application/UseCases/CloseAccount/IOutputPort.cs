@@ -1,6 +1,6 @@
-﻿using Domain.Accounts;
+﻿namespace Application.UseCases.CloseAccount;
 
-namespace Application.UseCases.CloseAccount;
+using Domain.Accounts;
 
 public interface IOutputPort
 {

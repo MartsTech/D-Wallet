@@ -1,6 +1,6 @@
-﻿using Application.Services;
+﻿namespace Application.UseCases.CloseAccount;
 
-namespace Application.UseCases.CloseAccount;
+using Application.Services;
 
 public sealed class CloseAccountValidationUseCase : ICloseAccountUseCase
 {

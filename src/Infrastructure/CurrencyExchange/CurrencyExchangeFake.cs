@@ -1,11 +1,11 @@
-﻿using Application.Services;
-using Domain.ValueObjects;
+﻿namespace Infrastructure.CurrencyExchange;
 
-namespace Infrastructure.CurrencyExchange;
+using Application.Services;
+using Domain.ValueObjects;
 
 public sealed class CurrencyExchangeFake : ICurrencyExchange
 {
-    private readonly Dictionary<Currency, decimal> _usdRates = new Dictionary<Currency, decimal>
+    private readonly Dictionary<Currency, decimal> _usdRates = new()
     {
         {Currency.Dollar, 1m},
         {Currency.Euro, 0.89021m},
@@ -17,8 +17,9 @@ public sealed class CurrencyExchangeFake : ICurrencyExchange
 
     public Task<Money> Convert(Money originalAmount, Currency destinationCurrency)
     {
-        decimal usdAmount = this._usdRates[originalAmount.Currency] / originalAmount.Amount;
-        decimal destinationAmount = this._usdRates[destinationCurrency] / usdAmount;
+        decimal usdAmount = _usdRates[originalAmount.Currency] / originalAmount.Amount;
+
+        decimal destinationAmount = _usdRates[destinationCurrency] / usdAmount;
 
         return Task.FromResult(new Money(destinationAmount, destinationCurrency));
     }

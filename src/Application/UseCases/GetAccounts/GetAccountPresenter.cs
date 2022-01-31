@@ -1,6 +1,6 @@
-﻿using Domain.Accounts;
+﻿namespace Application.UseCases.GetAccounts;
 
-namespace Application.UseCases.GetAccounts;
+using Domain.Accounts;
 
 public sealed class GetAccountPresenter : IOutputPort
 {

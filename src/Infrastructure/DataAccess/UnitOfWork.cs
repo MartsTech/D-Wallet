@@ -1,6 +1,6 @@
-﻿using Application.Services;
+﻿namespace Infrastructure.DataAccess;
 
-namespace Infrastructure.DataAccess;
+using Application.Services;
 
 public sealed class UnitOfWork : IUnitOfWork, IDisposable
 {

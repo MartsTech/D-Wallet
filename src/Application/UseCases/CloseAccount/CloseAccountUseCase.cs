@@ -1,8 +1,8 @@
-﻿using Application.Services;
+﻿namespace Application.UseCases.CloseAccount;
+
+using Application.Services;
 using Domain.Accounts;
 using Domain.ValueObjects;
-
-namespace Application.UseCases.CloseAccount;
 
 public sealed class CloseAccountUseCase : ICloseAccountUseCase
 {
@@ -26,8 +26,7 @@ public sealed class CloseAccountUseCase : ICloseAccountUseCase
 
     public Task Execute(Guid accountId)
     {
-        string externalUserId = _userService
-            .GetCurrentUserId();
+        string externalUserId = _userService.GetCurrentUserId();
 
         return CloseAccountInternal(new AccountId(accountId), externalUserId);
 
@@ -47,8 +46,7 @@ public sealed class CloseAccountUseCase : ICloseAccountUseCase
                 return;
             }
 
-            await Close(closingAccount)
-                .ConfigureAwait(false);
+            await Close(closingAccount).ConfigureAwait(false);
 
             _outputPort.Ok(closingAccount);
             return;

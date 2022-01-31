@@ -1,10 +1,10 @@
-﻿using Domain.Accounts;
+﻿namespace Infrastructure.DataAccess;
+
+using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
 using Domain.ValueObjects;
 using System.Collections.ObjectModel;
-
-namespace Infrastructure.DataAccess;
 
 public sealed class DataContextFake
 {

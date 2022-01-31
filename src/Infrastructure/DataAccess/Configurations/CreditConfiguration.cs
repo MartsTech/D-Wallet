@@ -1,9 +1,9 @@
-﻿using Domain.Credits;
+﻿namespace Infrastructure.DataAccess.Configurations;
+
+using Domain.Credits;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Infrastructure.DataAccess.Configurations;
 
 public sealed class CreditConfiguration : IEntityTypeConfiguration<Credit>
 {

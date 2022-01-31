@@ -1,64 +1,64 @@
-﻿using Application.Services;
+﻿namespace Infrastructure.CurrencyExchange;
+
+using Application.Services;
 using Domain.ValueObjects;
 using Newtonsoft.Json.Linq;
 
-namespace Infrastructure.CurrencyExchange
+public sealed class CurrencyExchangeService : ICurrencyExchange
 {
-    public sealed class CurrencyExchangeService : ICurrencyExchange
+    public const string HttpClientName = "Fixer";
+
+    private const string _exchangeUrl = "https://api.exchangeratesapi.io/latest?base=USD";
+
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    private readonly Dictionary<Currency, decimal> _usdRates = new();
+
+    public CurrencyExchangeService(IHttpClientFactory httpClientFactory)
     {
-        public const string HttpClientName = "Fixer";
+        _httpClientFactory = httpClientFactory;
+    }
 
-        private const string _exchangeUrl = "https://api.exchangeratesapi.io/latest?base=USD";
+    public async Task<Money> Convert(Money originalAmount, Currency destinationCurrency)
+    {
+        HttpClient httpClient = _httpClientFactory.CreateClient(HttpClientName);
 
-        private readonly IHttpClientFactory _httpClientFactory;
+        Uri requestUri = new(_exchangeUrl);
 
-        private readonly Dictionary<Currency, decimal> _usdRates = new Dictionary<Currency, decimal>();
+        HttpResponseMessage response = await httpClient.GetAsync(requestUri)
+            .ConfigureAwait(false);
 
-        public CurrencyExchangeService(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
+        response.EnsureSuccessStatusCode();
 
-        public async Task<Money> Convert(Money originalAmount, Currency destinationCurrency)
-        {
-            HttpClient httpClient = _httpClientFactory.CreateClient(HttpClientName);
-            Uri requestUri = new(_exchangeUrl);
+        string responseJson = await response
+            .Content
+            .ReadAsStringAsync()
+            .ConfigureAwait(false);
 
-            HttpResponseMessage response = await httpClient.GetAsync(requestUri)
-                .ConfigureAwait(false);
+        ParseCurrencies(responseJson);
 
-            response.EnsureSuccessStatusCode();
+        decimal usdAmount = _usdRates[originalAmount.Currency] / originalAmount.Amount;
 
-            string responseJson = await response
-                .Content
-                .ReadAsStringAsync()
-                .ConfigureAwait(false);
+        decimal destinationAmount = _usdRates[destinationCurrency] / usdAmount;
 
-            ParseCurrencies(responseJson);
+        return new Money(destinationAmount, destinationCurrency);
+    }
 
-            decimal usdAmount = _usdRates[originalAmount.Currency] / originalAmount.Amount;
-            decimal destinationAmount = _usdRates[destinationCurrency] / usdAmount;
+    private void ParseCurrencies(string responseJson)
+    {
+        JObject rates = JObject.Parse(responseJson);
 
-            return new Money(
-                destinationAmount,
-                destinationCurrency);
-        }
+        decimal eur = rates["rates"]![Currency.Euro.Code]!.Value<decimal>();
+        decimal cad = rates["rates"]![Currency.Canadian.Code]!.Value<decimal>();
+        decimal gbh = rates["rates"]![Currency.BritishPound.Code]!.Value<decimal>();
+        decimal sek = rates["rates"]![Currency.Krona.Code]!.Value<decimal>();
+        decimal brl = rates["rates"]![Currency.Real.Code]!.Value<decimal>();
 
-        private void ParseCurrencies(string responseJson)
-        {
-            JObject rates = JObject.Parse(responseJson);
-            decimal eur = rates["rates"]![Currency.Euro.Code]!.Value<decimal>();
-            decimal cad = rates["rates"]![Currency.Canadian.Code]!.Value<decimal>();
-            decimal gbh = rates["rates"]![Currency.BritishPound.Code]!.Value<decimal>();
-            decimal sek = rates["rates"]![Currency.Krona.Code]!.Value<decimal>();
-            decimal brl = rates["rates"]![Currency.Real.Code]!.Value<decimal>();
-
-            _usdRates.Add(Currency.Dollar, 1);
-            _usdRates.Add(Currency.Euro, eur);
-            _usdRates.Add(Currency.Canadian, cad);
-            _usdRates.Add(Currency.BritishPound, gbh);
-            _usdRates.Add(Currency.Krona, sek);
-            _usdRates.Add(Currency.Real, brl);
-        }
+        _usdRates.Add(Currency.Dollar, 1);
+        _usdRates.Add(Currency.Euro, eur);
+        _usdRates.Add(Currency.Canadian, cad);
+        _usdRates.Add(Currency.BritishPound, gbh);
+        _usdRates.Add(Currency.Krona, sek);
+        _usdRates.Add(Currency.Real, brl);
     }
 }

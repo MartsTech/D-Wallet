@@ -1,7 +1,7 @@
-﻿using Application.Services;
-using Infrastructure.DataAccess;
+﻿namespace Infrastructure.ExternalAuthentication;
 
-namespace Infrastructure.ExternalAuthentication;
+using Application.Services;
+using Infrastructure.DataAccess;
 
 public sealed class TestUserService : IUserService
 {

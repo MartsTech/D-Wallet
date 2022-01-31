@@ -1,6 +1,6 @@
-﻿using Domain.ValueObjects;
+﻿namespace Domain.Credits;
 
-namespace Domain.Credits;
+using Domain.ValueObjects;
 
 public interface ICredit
 {

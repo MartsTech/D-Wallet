@@ -1,13 +1,13 @@
-﻿using Application.Services;
-using Domain.Accounts;
+﻿namespace WebApi.Modules;
+
+using Application.Services;
+using WebApi.Modules.Common.FeatureFlags;
 using Infrastructure.DataAccess;
-using Infrastructure.DataAccess.Factories;
 using Infrastructure.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.FeatureManagement;
-using WebApi.Modules.Common.FeatureFlags;
-
-namespace WebApi.Modules;
+using Domain.Accounts;
+using Infrastructure.DataAccess.Factories;
 
 public static class SQLServerExtensions
 {
@@ -25,11 +25,11 @@ public static class SQLServerExtensions
 
         if (isEnabled)
         {
-            services.AddDbContext<DataContext>(
-                options => options.UseSqlServer(
-                    config.GetValue<string>("PersistenceModule:DefaultConnection")));
+            services.AddDbContext<DataContext>(opt =>
+            {
+                opt.UseSqlServer(config.GetValue<string>("PersistenceModule:DefaultConnection"));
+            });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
             services.AddScoped<IAccountRepository, AccountRepository>();
         }
         else

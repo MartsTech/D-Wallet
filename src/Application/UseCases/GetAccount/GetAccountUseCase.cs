@@ -1,7 +1,7 @@
-﻿using Domain.Accounts;
-using Domain.ValueObjects;
+﻿namespace Application.UseCases.GetAccount;
 
-namespace Application.UseCases.GetAccount;
+using Domain.Accounts;
+using Domain.ValueObjects;
 
 public sealed class GetAccountUseCase : IGetAccountUseCase
 {

@@ -1,9 +1,9 @@
-﻿using Domain.Accounts;
+﻿namespace Infrastructure.DataAccess.Repositories;
+
+using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
 using Domain.ValueObjects;
-
-namespace Infrastructure.DataAccess.Repositories;
 
 public sealed class AccountRepositoryFake : IAccountRepository
 {

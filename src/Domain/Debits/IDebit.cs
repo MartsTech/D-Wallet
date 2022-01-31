@@ -1,6 +1,6 @@
-﻿using Domain.ValueObjects;
+﻿namespace Domain.Debits;
 
-namespace Domain.Debits;
+using Domain.ValueObjects;
 
 public interface IDebit
 {
