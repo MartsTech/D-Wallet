@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using WebApi.Modules;
 using WebApi.Modules.Common;
 using WebApi.Modules.Common.FeatureFlags;
@@ -33,9 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app
-        .UseExceptionHandler("/api/CustomError")
-        .UseHsts();
+    app.UseExceptionHandler("/api/CustomError").UseHsts();
 }
 
 app
@@ -44,6 +41,7 @@ app
     .UseCustomCors()
     .UseCustomHttpMetrics()
     .UseRouting()
+    .UseVersionedSwagger(app.Services, app.Configuration)
     .UseAuthentication()
     .UseAuthorization()
     .UseEndpoints(endpoints =>
@@ -51,20 +49,5 @@ app
         endpoints.MapControllers();
         endpoints.MapMetrics();
     });
-
-using var scope = app.Services.CreateScope();
-
-var services = scope.ServiceProvider;
-
-try
-{
-    var provider = services.GetRequiredService<IApiVersionDescriptionProvider>();
-    app.UseVersionedSwagger(provider, app.Configuration, app.Environment);
-}
-catch (Exception ex)
-{
-    var logger = services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "An error ocurred during swagger setup.");
-}
 
 app.Run();

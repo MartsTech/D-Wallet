@@ -23,6 +23,8 @@ public static class SwaggerExtensions
            .GetAwaiter()
            .GetResult();
 
+        Console.WriteLine(isEnabled);
+
         if (isEnabled)
         {
             services
@@ -56,11 +58,12 @@ public static class SwaggerExtensions
     }
 
     public static IApplicationBuilder UseVersionedSwagger(
-      this IApplicationBuilder app,
-      IApiVersionDescriptionProvider provider,
-      IConfiguration config,
-      IWebHostEnvironment env)
+        this IApplicationBuilder app,
+        IServiceProvider services,
+        IConfiguration config)
     {
+        var provider = services.GetRequiredService<IApiVersionDescriptionProvider>();
+
         app.UseSwagger();
         app.UseSwaggerUI(opt =>
         {
