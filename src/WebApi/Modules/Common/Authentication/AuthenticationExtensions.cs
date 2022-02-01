@@ -1,9 +1,15 @@
 ﻿namespace WebApi.Modules.Common.Authentication;
 
 using Application.Services;
+using Domain.Users;
+using Infrastructure.DataAccess;
 using Infrastructure.ExternalAuthentication;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.FeatureManagement;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebApi.Modules.Common.FeatureFlags;
 
 public static class AuthenticationExtensions
@@ -24,7 +30,40 @@ public static class AuthenticationExtensions
 
         if (isEnabled)
         {
+            services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<DataContext>()
+            .AddSignInManager<SignInManager<User>>()
+            .AddDefaultTokenProviders();
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWTSettings:TokenKey"]));
+
+            services
+                .AddAuthentication(opt =>
+                {
+                    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(opt =>
+                {
+                    opt.SaveToken = true;
+                    opt.RequireHttpsMetadata = false;
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = key,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
+
             services.AddScoped<IUserService, ExternalUserService>();
+            services.AddScoped<TokenService>();
         }
         else
         {

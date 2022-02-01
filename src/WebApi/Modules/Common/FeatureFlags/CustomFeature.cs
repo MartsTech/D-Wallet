@@ -13,5 +13,7 @@ public enum CustomFeature
     Swagger,
     SQLServer,
     CurrencyExchange,
-    Authentication
+    Authentication,
+    Login,
+    Register
 }

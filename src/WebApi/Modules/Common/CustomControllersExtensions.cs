@@ -3,6 +3,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FeatureFlags;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
@@ -21,6 +23,12 @@ public static class CustomControllersExtensions
            .GetAwaiter()
            .GetResult();
 
+        bool isAuthenticationEnabled = featureManager
+            .IsEnabledAsync(nameof(CustomFeature.Authentication))
+            .ConfigureAwait(false)
+            .GetAwaiter()
+            .GetResult();
+
         services
           .AddHttpContextAccessor()
           .AddMvc(opt =>
@@ -32,6 +40,12 @@ public static class CustomControllersExtensions
               if (isErrorFilterEnabled)
               {
                   opt.Filters.Add(new ExceptionFilter());
+              }
+
+              if (isAuthenticationEnabled)
+              {
+                  var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                  opt.Filters.Add(new AuthorizeFilter(policy));
               }
           })
           .AddJsonOptions(opt =>

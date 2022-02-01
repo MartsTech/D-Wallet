@@ -3,9 +3,11 @@
 using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
+using Domain.Users;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public sealed class DataContext : DbContext
+public sealed class DataContext : IdentityDbContext<User>
 {
     public DataContext(DbContextOptions options) : base(options)
     {
@@ -19,6 +21,8 @@ public sealed class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         if (modelBuilder is null)
         {
             throw new ArgumentNullException(nameof(modelBuilder));

@@ -35,7 +35,8 @@ public static class SwaggerExtensions
                             In = ParameterLocation.Header,
                             Description = "Please insert JWT with Bearer into field",
                             Name = "Authorization",
-                            Type = SecuritySchemeType.ApiKey
+                            Type = SecuritySchemeType.ApiKey,
+                            BearerFormat = "JWT",
                         });
                     opt.AddSecurityRequirement(new OpenApiSecurityRequirement
                     {
@@ -44,7 +45,8 @@ public static class SwaggerExtensions
                             {
                                 Reference = new OpenApiReference
                                 {
-                                    Type = ReferenceType.SecurityScheme, Id = "Bearer"
+                                    Type = ReferenceType.SecurityScheme, 
+                                    Id = "Bearer"
                                 }
                             },
                             Array.Empty<string>()

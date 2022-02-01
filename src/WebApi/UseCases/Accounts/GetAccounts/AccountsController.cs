@@ -2,7 +2,6 @@
 
 using Application.UseCases.GetAccounts;
 using Domain.Accounts;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement.Mvc;
 using WebApi.Modules.Common;

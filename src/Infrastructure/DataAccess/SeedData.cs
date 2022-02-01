@@ -3,6 +3,7 @@
 using Domain.Accounts;
 using Domain.Credits;
 using Domain.Debits;
+using Domain.Users;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 

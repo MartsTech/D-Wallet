@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using Application.Services;
 using Application.UseCases.OpenAccount;
 using Domain.Accounts;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement.Mvc;
 using WebApi.Modules.Common;
