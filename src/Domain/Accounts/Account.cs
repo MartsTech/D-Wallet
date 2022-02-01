@@ -6,22 +6,22 @@ using Domain.ValueObjects;
 
 public class Account : IAccount
 {
-    public Account(AccountId accountId, Currency currency, string externalUserId)
+    public Account(AccountId accountId, string externalUserId, Currency currency)
     {
         AccountId = accountId;
-        Currency = currency;
         ExternalUserId = externalUserId;
+        Currency = currency;
     }
 
     public AccountId AccountId { get; }
 
-    public Currency Currency { get; }
-
     public string ExternalUserId { get; }
 
-    public CreditsCollection CreditsCollection { get; } = new CreditsCollection();
+    public Currency Currency { get; }
 
-    public DebitsCollection DebitsCollection { get; } = new DebitsCollection();
+    public CreditsCollection CreditsCollection { get; } = new();
+
+    public DebitsCollection DebitsCollection { get; } = new();
 
     public void Deposit(Credit credit)
     {

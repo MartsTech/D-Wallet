@@ -1,8 +1,8 @@
 ﻿namespace Infrastructure.ExternalAuthentication;
 
+using System.Security.Claims;
 using Application.Services;
 using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
 
 public sealed class ExternalUserService : IUserService
 {

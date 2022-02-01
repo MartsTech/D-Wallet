@@ -8,11 +8,13 @@ public sealed class ContextFactory : IDesignTimeDbContextFactory<DataContext>
 {
     public DataContext CreateDbContext(string[] args)
     {
-        string connectionString = ReadDefaultConnectionStringFromAppSettings();
+        string connStr = ReadDefaultConnectionStringFromAppSettings();
 
         DbContextOptionsBuilder<DataContext> builder = new();
 
-        builder.UseSqlServer(connectionString);
+        var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+
+        builder.UseMySql(connStr, serverVersion);
 
         return new DataContext(builder.Options);
     }
@@ -21,15 +23,15 @@ public sealed class ContextFactory : IDesignTimeDbContextFactory<DataContext>
     {
         string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-        IConfigurationRoot configuration = new ConfigurationBuilder()
+        IConfigurationRoot config = new ConfigurationBuilder()
             .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
             .AddJsonFile("appsettings.json", false)
             .AddJsonFile($"appsettings.{env}.json", false)
             .AddEnvironmentVariables()
             .Build();
 
-        string connectionString = configuration.GetValue<string>("PersistenceModule:DefaultConnection");
+        string connStr = config.GetConnectionString("DefaultConnection");
 
-        return connectionString;
+        return connStr;
     }
 }

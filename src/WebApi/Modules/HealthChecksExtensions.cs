@@ -35,7 +35,10 @@ public static class HealthChecksExtensions
 
     public static IApplicationBuilder UseHealthChecks(this IApplicationBuilder app)
     {
-        HealthCheckOptions options = new() { ResponseWriter = WriteResponse };
+        HealthCheckOptions options = new() 
+        { 
+            ResponseWriter = WriteResponse 
+        };
 
         app.UseHealthChecks("/health", options);
 

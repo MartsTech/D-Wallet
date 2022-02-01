@@ -27,7 +27,11 @@ public static class SQLServerExtensions
         {
             services.AddDbContext<DataContext>(opt =>
             {
-                opt.UseSqlServer(config.GetValue<string>("PersistenceModule:DefaultConnection"));
+                string connStr = config.GetConnectionString("DefaultConnection");
+
+                var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+
+                opt.UseMySql(connStr, serverVersion);
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountRepository, AccountRepository>();

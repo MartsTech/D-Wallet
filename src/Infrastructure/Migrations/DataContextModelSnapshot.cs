@@ -3,7 +3,6 @@ using System;
 using Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -18,22 +17,20 @@ namespace Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.1")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Domain.Accounts.Account", b =>
                 {
                     b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Currency")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ExternalUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("AccountId");
 
@@ -51,20 +48,20 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Credits.Credit", b =>
                 {
                     b.Property<Guid>("CreditId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Currency")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("CreditId");
 
@@ -78,7 +75,7 @@ namespace Infrastructure.Migrations
                             CreditId = new Guid("a86f8863-099f-49b2-acec-274476cb559d"),
                             AccountId = new Guid("352e98c4-f68b-4175-a943-08ab46b9c01b"),
                             Currency = "USD",
-                            TransactionDate = new DateTime(2022, 2, 1, 8, 34, 3, 252, DateTimeKind.Utc).AddTicks(8550),
+                            TransactionDate = new DateTime(2022, 2, 1, 14, 2, 18, 751, DateTimeKind.Utc).AddTicks(8011),
                             Value = 400m
                         });
                 });
@@ -86,20 +83,20 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Debits.Debit", b =>
                 {
                     b.Property<Guid>("DebitId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Currency")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("DebitId");
 
@@ -113,7 +110,7 @@ namespace Infrastructure.Migrations
                             DebitId = new Guid("3b31a10f-a9fe-49ad-94cb-ad32c07d13cb"),
                             AccountId = new Guid("352e98c4-f68b-4175-a943-08ab46b9c01b"),
                             Currency = "USD",
-                            TransactionDate = new DateTime(2022, 2, 1, 8, 34, 3, 252, DateTimeKind.Utc).AddTicks(8565),
+                            TransactionDate = new DateTime(2022, 2, 1, 14, 2, 18, 751, DateTimeKind.Utc).AddTicks(8029),
                             Value = 50m
                         });
                 });

@@ -12,11 +12,6 @@ public sealed class CloseAccountPresenter : IOutputPort
 
     public bool InvalidOutput { get; private set; }
 
-    public void HasFunds()
-    {
-        HasFundsOutput = true;
-    }
-
     public void Invalid()
     {
         InvalidOutput = true;
@@ -25,6 +20,11 @@ public sealed class CloseAccountPresenter : IOutputPort
     public void NotFound()
     {
         NotFoundOutput = true;
+    }
+
+    public void HasFunds()
+    {
+        HasFundsOutput = true;
     }
 
     public void Ok(Account account)

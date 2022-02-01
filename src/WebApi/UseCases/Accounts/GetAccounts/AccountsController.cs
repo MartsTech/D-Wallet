@@ -28,7 +28,6 @@ public sealed class AccountsController : ControllerBase, IOutputPort
         _viewModel = Ok(new GetAccountsResponse(accounts));
     }
 
-    [Authorize]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAccountsResponse))]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]

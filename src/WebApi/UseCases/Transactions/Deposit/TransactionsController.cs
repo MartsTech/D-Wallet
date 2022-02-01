@@ -43,7 +43,6 @@ public sealed class TransactionsController : ControllerBase, IOutputPort
         _viewModel = Ok(new DepositResponse(new CreditModel(credit)));
     }
 
-    [Authorize]
     [HttpPatch("{accountId:guid}/Deposit")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DepositResponse))]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Patch))]

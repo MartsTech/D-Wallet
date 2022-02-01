@@ -26,8 +26,8 @@ public sealed class DataContextFake
 
         Account account = new(
             SeedData.DefaultAccountId,
-            Currency.Dollar,
-            SeedData.DefaultExternalUserId);
+            SeedData.DefaultExternalUserId,
+            Currency.Dollar);
 
         account.CreditsCollection.Add(credit);
         account.DebitsCollection.Add(debit);
@@ -38,8 +38,8 @@ public sealed class DataContextFake
 
         Account account2 = new(
             SeedData.SecondAccountId,
-            Currency.Dollar,
-            SeedData.SecondExternalUserId);
+            SeedData.SecondExternalUserId,
+            Currency.Dollar);
 
         Accounts.Add(account2);
     }

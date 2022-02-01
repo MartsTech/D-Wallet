@@ -6,9 +6,9 @@ public interface IOutputPort
 {
     void Invalid();
 
-    void Ok(Account account);
-
     void NotFound();
 
     void HasFunds();
+
+    void Ok(Account account);
 }

@@ -4,9 +4,9 @@ using Domain.ValueObjects;
 
 public sealed class CreditNull : ICredit
 {
-    public CreditId CreditId { get; } = new CreditId(Guid.Empty);
+    public CreditId CreditId { get; } = new(Guid.Empty);
 
-    public Money Amount { get; } = new Money(0, new Currency(string.Empty));
+    public Money Amount { get; } = new(0, new Currency(string.Empty));
 
-    public static CreditNull Instance { get; } = new CreditNull();
+    public static CreditNull Instance { get; } = new();
 }

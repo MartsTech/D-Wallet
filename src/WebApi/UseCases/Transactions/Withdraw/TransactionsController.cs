@@ -52,7 +52,6 @@ public sealed class TransactionsController : ControllerBase, IOutputPort
         _viewModel = Ok(new WithdrawResponse(new DebitModel(debit)));
     }
 
-    [Authorize]
     [HttpPatch("{accountId:guid}/Withdraw")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WithdrawResponse))]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Patch))]

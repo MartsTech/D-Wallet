@@ -8,7 +8,7 @@ public static class DataProtectionExtensions
     {
         services
             .AddDataProtection()
-            .SetApplicationName("accounts-api")
+            .SetApplicationName("d-wallet")
             .PersistKeysToFileSystem(new DirectoryInfo(@"./"));
 
         return services;

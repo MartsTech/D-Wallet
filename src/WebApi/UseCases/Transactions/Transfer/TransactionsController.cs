@@ -49,7 +49,6 @@ public sealed class TransactionsController : ControllerBase, IOutputPort
         _viewModel = Ok(new TransferResponse(new DebitModel(debit)));
     }
 
-    [Authorize]
     [HttpPatch("{accountId:guid}/{destinationAccountId:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TransferResponse))]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Patch))]

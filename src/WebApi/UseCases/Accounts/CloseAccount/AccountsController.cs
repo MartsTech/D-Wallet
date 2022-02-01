@@ -48,7 +48,6 @@ public sealed class AccountsController : ControllerBase, IOutputPort
         _viewModel = Ok(new CloseAccountResponse(account));
     }
 
-    [Authorize]
     [HttpDelete("{accountId:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CloseAccountResponse))]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Delete))]

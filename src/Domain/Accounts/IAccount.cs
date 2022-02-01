@@ -12,8 +12,7 @@ public interface IAccount
 
     void Withdraw(Debit debit);
 
-    bool IsClosingAllowed();
-
     Money GetCurrentBalance();
-}
 
+    bool IsClosingAllowed();
+}

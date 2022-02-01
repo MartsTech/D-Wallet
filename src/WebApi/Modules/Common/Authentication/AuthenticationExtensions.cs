@@ -25,16 +25,6 @@ public static class AuthenticationExtensions
         if (isEnabled)
         {
             services.AddScoped<IUserService, ExternalUserService>();
-
-            services
-                .AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication("Bearer", opt =>
-                {
-                    opt.Authority = config["AuthenticationModule:AuthorityUrl"];
-                    opt.ApiName = "api1";
-
-                    opt.RequireHttpsMetadata = false;
-                });
         }
         else
         {

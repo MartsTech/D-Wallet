@@ -18,9 +18,9 @@ public sealed class AccountNull : IAccount
         // Null Pattern
     }
 
-    public Money GetCurrentBalance() => new Money(0, new Currency());
+    public Money GetCurrentBalance() => new(0, new Currency());
 
     public bool IsClosingAllowed() => false;
 
-    public static AccountNull Instance { get; } = new AccountNull();
+    public static AccountNull Instance { get; } = new();
 }

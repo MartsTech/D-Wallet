@@ -42,7 +42,6 @@ public sealed class AccountsController : ControllerBase, IOutputPort
         _viewModel = Ok(new OpenAccountResponse(new AccountModel(account)));
     }
 
-    [Authorize]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OpenAccountResponse))]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(OpenAccountResponse))]

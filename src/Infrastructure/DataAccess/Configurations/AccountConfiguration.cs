@@ -22,14 +22,14 @@ public sealed class AccountConfiguration : IEntityTypeConfiguration<Account>
                v => new AccountId(v))
            .IsRequired();
 
+        builder.Property(b => b.ExternalUserId)
+           .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
         builder.Property(credit => credit.Currency)
           .HasConversion(
               value => value.Code,
               value => new Currency(value))
           .IsRequired();
-
-        builder.Property(b => b.ExternalUserId)
-           .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
         builder.HasMany(x => x.CreditsCollection)
             .WithOne(b => b.Account!)

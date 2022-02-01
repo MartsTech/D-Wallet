@@ -9,7 +9,7 @@ public sealed class AccountFactory : IAccountFactory
 {
     public Account NewAccount(string externalUserId, Currency currency)
     {
-        return new Account(new AccountId(Guid.NewGuid()), currency, externalUserId);
+        return new Account(new AccountId(Guid.NewGuid()), externalUserId, currency);
     }
 
     public Credit NewCredit(Account account, Money amountToDeposit, DateTime transactionDate)
