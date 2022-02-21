@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Domain.Debits;
 
-namespace Domain.Debits
+using Domain.ValueObjects;
+
+public sealed class DebitsCollection : List<Debit>
 {
-    using Domain.ValueObjects;
-
-    public sealed class DebitNull : IDebit
+    public Money GetTotal()
     {
-        public DebitId DebitId { get; } = new(Guid.Empty);
+        if (Count == 0)
+        {
+            return new Money(0, new Currency(string.Empty));
+        }
 
-        public Money Amount { get; } = new(0, new Currency(string.Empty));
+        Money total = new(0, this.First().Amount.Currency);
 
-        public static DebitNull Instance { get; } = new();
+        return this.Aggregate(total, (current, credit) =>
+            new Money(current.Amount + credit.Amount.Amount, current.Currency));
     }
 }

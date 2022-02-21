@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Domain.Credits;
 
-namespace Domain.Credits
+using Domain.ValueObjects;
+
+public interface ICredit
 {
-    using Domain.ValueObjects;
+    CreditId CreditId { get; }
 
-    public interface ICredit
-    {
-        CreditId CreditId { get; }
-
-        Money Amount { get; }
-    }
+    Money Amount { get; }
 }

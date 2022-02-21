@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Credits;
+﻿namespace Domain.Credits;
 
 using Domain.Accounts;
 using Domain.ValueObjects;
@@ -40,4 +34,3 @@ public class Credit : ICredit
         return Amount.Add(amount);
     }
 }
-    }
