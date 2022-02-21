@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Persistence.Configurations;
 
-namespace Persistence.Configurations;
 using Domain.Accounts;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
@@ -37,12 +32,12 @@ public sealed class AccountConfiguration : IEntityTypeConfiguration<Account>
           .IsRequired();
 
         builder.HasMany(x => x.CreditsCollection)
-            .WithOne(b => b.Account!)
+            .WithOne(b => b.Account)
             .HasForeignKey(b => b.AccountId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(x => x.DebitsCollection)
-            .WithOne(b => b.Account!)
+            .WithOne(b => b.Account)
             .HasForeignKey(b => b.AccountId)
             .OnDelete(DeleteBehavior.Cascade);
     }
