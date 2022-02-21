@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Credits
 {
-    internal class ICredit
+    using Domain.ValueObjects;
+
+    public interface ICredit
     {
+        CreditId CreditId { get; }
+
+        Money Amount { get; }
     }
 }
