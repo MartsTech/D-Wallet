@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Persiste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5379100C-4702-42A9-81E6-AE8C858C0395}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{F32CFDE4-C242-434E-AA47-7B5CD8891F20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5379100C-4702-42A9-81E6-AE8C858C0395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5379100C-4702-42A9-81E6-AE8C858C0395}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5379100C-4702-42A9-81E6-AE8C858C0395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F32CFDE4-C242-434E-AA47-7B5CD8891F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F32CFDE4-C242-434E-AA47-7B5CD8891F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F32CFDE4-C242-434E-AA47-7B5CD8891F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F32CFDE4-C242-434E-AA47-7B5CD8891F20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
