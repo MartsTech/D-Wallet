@@ -1,0 +1,25 @@
+version: "3"
+services:
+  mysql:
+    image: "mysql:8.0.23"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_PASSWORD=user_password
+      - MYSQL_USER=d-wallet_user
+      - MYSQL_DATABASE=d-wallet_db
+    volumes:
+      - db_data:/var/lib/mysql
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./packages/api
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=d-wallet_user
+      - MYSQL_PASSWORD=user_password
+      - MYSQL_DATABASE=d-wallet_db
+      - MYSQL_PORT=3306
+volumes:
+  db_data:
+  cache:
+    driver: local
