@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    image: "martstech/d-wallet-api"
+    image: "martstech/dwallet-api"
     mem_limit: 128m
     hostname: api
     environment:
@@ -10,3 +10,10 @@ services:
       - MYSQL_HOST=$MYSQL_HOST
       - MYSQL_PORT=$MYSQL_PORT
       - MYSQL_DATABASE=$MYSQL_DATABASE
+      - JWTSettings:TokenKey=$JWT_SECRET
+  proxy:
+    image: "martstech/dwallet-proxy"
+    mem_limit: 128m
+    hostname: proxy
+    ports:
+      - "80:80"
