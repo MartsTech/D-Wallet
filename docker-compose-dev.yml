@@ -5,21 +5,28 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root_password
       - MYSQL_PASSWORD=user_password
-      - MYSQL_USER=d-wallet_user
-      - MYSQL_DATABASE=d-wallet_db
+      - MYSQL_USER=dwallet_user
+      - MYSQL_DATABASE=dwallet_db
     volumes:
       - db_data:/var/lib/mysql
+  proxy:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./packages/proxy
+    ports:
+      - "5000:80"
+    depends_on:
+      - api
   api:
     build:
       dockerfile: Dockerfile.dev
       context: ./packages/api
     environment:
       - MYSQL_HOST=mysql
-      - MYSQL_USER=d-wallet_user
+      - MYSQL_USER=dwallet_user
       - MYSQL_PASSWORD=user_password
-      - MYSQL_DATABASE=d-wallet_db
+      - MYSQL_DATABASE=dwallet_db
       - MYSQL_PORT=3306
 volumes:
   db_data:
-  cache:
-    driver: local
