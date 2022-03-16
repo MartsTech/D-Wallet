@@ -1,6 +1,7 @@
 ﻿namespace UnitTests.Accounts.CloseAccount;
 
 using Application.UseCases.Accounts.CloseAccount;
+using Application.UseCases.Transactions.Withdraw;
 using Domain.Accounts;
 using Domain.Credits;
 using Domain.ValueObjects;
@@ -9,7 +10,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 public sealed class CloseAccountTests : IClassFixture<StandardFixture>
 {
@@ -40,8 +40,26 @@ public sealed class CloseAccountTests : IClassFixture<StandardFixture>
     }
 
     [Fact]
-    public async Task CloseAccountUseCase_Returns_Exception_When_Account_Has_Balance()
+    public async Task CloseAccountUseCase_Returns_Closed_Account_Id_When_Account_Has_Zero_Balance()
     {
+        WithdrawInput inputWithdraw = new()
+        {
+            AccountId = SeedData.DefaultAccountId.Id,
+            Amount = 500m,
+            Currency = "USD"
+        };
+
+        WithdrawUseCase.Command commandWithdraw = new(inputWithdraw);
+
+        WithdrawUseCase.Handler handlerWithdraw = new(
+            _fixture.EntityFactory,
+            _fixture.AccountRepository,
+            _fixture.CurrencyExchange,
+            _fixture.UnitOfWork,
+            _fixture.UserService);
+
+        await handlerWithdraw.Handle(commandWithdraw, CancellationToken.None);
+
         CloseAccountInput input = new()
         {
             AccountId = SeedData.DefaultAccountId.Id
@@ -56,7 +74,7 @@ public sealed class CloseAccountTests : IClassFixture<StandardFixture>
 
         var result = await handler.Handle(command, CancellationToken.None);
 
-        Console.WriteLine(result.Error);
-        Assert.False(result.IsSuccess);
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(result.Value);
     }
 }
