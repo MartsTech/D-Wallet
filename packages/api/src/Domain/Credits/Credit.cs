@@ -19,7 +19,7 @@ public class Credit : ICredit
 
     public AccountId AccountId { get; }
 
-    public Account? Account { get; set; }
+    public Account? Account { get; }
 
     public DateTime TransactionDate { get; }
 

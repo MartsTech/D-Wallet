@@ -15,7 +15,7 @@ public static class CustomCorsExtensions
                     .AllowAnyHeader()
                     .AllowCredentials()
                     .WithExposedHeaders("WWW-Authenticate")
-                    .WithOrigins("http://localhost:3000", "http://localhost:5000");
+                    .WithOrigins("http://localhost:5000");
             });
         });
 
