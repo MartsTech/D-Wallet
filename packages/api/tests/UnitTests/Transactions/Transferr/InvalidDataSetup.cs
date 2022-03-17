@@ -6,8 +6,8 @@ internal sealed class InvalidDataSetup : TheoryData<decimal>
 {
     public InvalidDataSetup()
     {
-        Add(-100);
-        Add(-10);
-        Add(-300);
+        Add(-100m);
+        Add(-10m);
+        Add(-300m);
     }
 }

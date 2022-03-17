@@ -78,27 +78,27 @@ public sealed class CloseAccountTests : IClassFixture<StandardFixture>
         Assert.NotNull(result.Value);
     }
 
-    [Theory]
-    [ClassData(typeof(InvalidDataSetup))]
-    public async Task CloseAccountUseCase_Returns_Error_When_Given_Id_Which_Does_Not_Exist(Guid id)
-    {
+    //[Theory]
+    //[ClassData(typeof(InvalidDataSetup))]
+    //public async Task CloseAccountUseCase_Returns_Error_When_Given_Id_Which_Does_Not_Exist(Guid id)
+    //{
         
 
-        CloseAccountInput input = new()
-        {
-            AccountId = id
-        };
+      //  CloseAccountInput input = new()
+       // {
+            //AccountId = id
+       // };
 
-        CloseAccountUseCase.Command command = new(input);
+       // CloseAccountUseCase.Command command = new(input);
 
-        CloseAccountUseCase.Handler handler = new(
-            _fixture.AccountRepository,
-            _fixture.UnitOfWork,
-            _fixture.UserService);
+        //CloseAccountUseCase.Handler handler = new(
+            //_fixture.AccountRepository,
+            //_fixture.UnitOfWork,
+           // _fixture.UserService);
 
-        var result = await handler.Handle(command, CancellationToken.None);
+        //var result = await handler.Handle(command, CancellationToken.None);
 
-        Assert.False(result.IsSuccess);
-        Assert.NotNull(result.Error);
-    }
+       // Assert.False(result.IsSuccess);
+       // Assert.NotNull(result.Error);
+    //}
 }

@@ -1,6 +1,7 @@
 ﻿namespace UnitTests.Accounts.CloseAccount;
 
 using Application.UseCases.Accounts.CloseAccount;
+using Application.UseCases.Transactions.Deposit;
 using Application.UseCases.Transactions.Transfer;
 using Application.UseCases.Transactions.Withdraw;
 using Domain.Accounts;
