@@ -57,8 +57,6 @@ public sealed class WithdrawTests : IClassFixture<StandardFixture>
             AccountId = SeedData.DefaultAccountId.Id,
             Amount = amount,
             Currency = "USD",
-           
-
         };
 
         WithdrawUseCase.Command command = new(input);
