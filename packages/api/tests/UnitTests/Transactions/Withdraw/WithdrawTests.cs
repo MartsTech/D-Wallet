@@ -5,6 +5,7 @@ using Application.UseCases.Transactions.Withdraw;
 using Domain.Accounts;
 using Domain.Credits;
 using Domain.ValueObjects;
+using FluentValidation.Results;
 using Persistence;
 using System;
 using System.Threading;
@@ -73,6 +74,35 @@ public sealed class WithdrawTests : IClassFixture<StandardFixture>
 
         Assert.False(result.IsSuccess);
         Assert.NotNull(result.Error);
+    }
+
+    [Theory]
+    [ClassData(typeof(NegativeDataSetup))]
+    public async Task Error_When_Withdrawing_Negative_Money_In_Balance(decimal amount)
+    {
+        WithdrawInput input = new()
+        {
+            AccountId = SeedData.DefaultAccountId.Id,
+            Amount = amount,
+            Currency = "USD",
+
+
+        };
+
+        WithdrawUseCase.Command command = new(input);
+
+        WithdrawUseCase.Handler handler = new(
+            _fixture.EntityFactory,
+            _fixture.AccountRepository,
+            _fixture.CurrencyExchange,
+            _fixture.UnitOfWork,
+            _fixture.UserService);
+
+        WithdrawUseCase.CommandValidator validator = new();
+        ValidationResult validationResult = validator.Validate(command);
+
+        Assert.False(validationResult.IsValid);
+
     }
 }
 

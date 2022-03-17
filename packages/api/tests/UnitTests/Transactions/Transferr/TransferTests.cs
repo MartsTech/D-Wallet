@@ -32,7 +32,7 @@ public sealed class TransferrTests : IClassFixture<StandardFixture>
         {
             Amount = amount,
             OriginAccountId = SeedData.DefaultAccountId.Id,
-            DestinationAccountId = SeedData.DefaultAccountId.Id,
+            DestinationAccountId = SeedData.SecondAccountId.Id,
             Currency = "USD"
         };
 
@@ -57,7 +57,7 @@ public sealed class TransferrTests : IClassFixture<StandardFixture>
         {
             Amount = amount,
             OriginAccountId = SeedData.DefaultAccountId.Id,
-            DestinationAccountId = SeedData.DefaultAccountId.Id,
+            DestinationAccountId = SeedData.SecondAccountId.Id,
             Currency = "USD"
         };
 
