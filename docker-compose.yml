@@ -10,7 +10,7 @@ services:
       - MYSQL_HOST=$MYSQL_HOST
       - MYSQL_PORT=$MYSQL_PORT
       - MYSQL_DATABASE=$MYSQL_DATABASE
-      - JWTSettings:TokenKey=$JWT_SECRET
+      - JWTSettings:TokenKey=$JWTSettings:TokenKey
       - FIXER_ACCESS_KEY=$FIXER_ACCESS_KEY
   proxy:
     image: "martstech/dwallet-proxy"
