@@ -11,6 +11,7 @@ services:
       - MYSQL_PORT=$MYSQL_PORT
       - MYSQL_DATABASE=$MYSQL_DATABASE
       - JWTSettings:TokenKey=$JWT_SECRET
+      - FIXER_ACCESS_KEY=$FIXER_ACCESS_KEY
   proxy:
     image: "martstech/dwallet-proxy"
     mem_limit: 128m
