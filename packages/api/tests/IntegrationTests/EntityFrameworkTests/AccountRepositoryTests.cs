@@ -2,6 +2,7 @@
 
 using Domain.Accounts;
 using Domain.Credits;
+using Domain.Debits;
 using Domain.ValueObjects;
 using Persistence;
 using Persistence.Repositories;
@@ -109,4 +110,60 @@ public sealed class AccountRepositoryTests : IClassFixture<StandardFixture>
 
         Assert.False(hasAnyAccount && hasAnyCredit);
     }
+
+    [Fact]
+    public async Task Update()
+    {
+        AccountRepository accountRepository = new(_fixture.Context);
+
+        Account account = new(
+            new AccountId(Guid.NewGuid()),
+            SeedData.DefaultUserId,
+            Currency.Dollar
+        );
+
+        Credit credit = new(
+            new CreditId(Guid.NewGuid()),
+            account.AccountId,
+            DateTime.Now,
+            500,
+            "USD"
+        );
+
+        await accountRepository
+            .Add(account, credit)
+            .ConfigureAwait(false);
+
+        await _fixture
+            .Context
+            .SaveChangesAsync()
+            .ConfigureAwait(false);
+        
+        Debit debit = new(
+           new DebitId(Guid.NewGuid()),
+           account.AccountId,
+           DateTime.Now,
+           400,
+           "USD"
+       );
+
+        await accountRepository
+            .Update(account,credit)
+            .ConfigureAwait(false);
+
+        await _fixture
+            .Context
+            .SaveChangesAsync()
+            .ConfigureAwait(false);
+
+        var findAccount = await _fixture
+            .Context
+            .Accounts
+            .FindAsync(account.AccountId);
+
+        Money balance = findAccount.GetCurrentBalance();
+
+        Assert.Equal(balance.Amount,100) ;
+    }
+
 }
