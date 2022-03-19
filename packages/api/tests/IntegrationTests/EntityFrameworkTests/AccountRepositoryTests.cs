@@ -148,7 +148,7 @@ public sealed class AccountRepositoryTests : IClassFixture<StandardFixture>
        );
 
         await accountRepository
-            .Update(account,credit)
+            .Update(account, debit)
             .ConfigureAwait(false);
 
         await _fixture

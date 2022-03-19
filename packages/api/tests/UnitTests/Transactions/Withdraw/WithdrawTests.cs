@@ -1,18 +1,11 @@
-﻿namespace UnitTests.Accounts.CloseAccount;
+﻿namespace UnitTests.Transactions.Withdraw;
 
-using Application.UseCases.Accounts.CloseAccount;
 using Application.UseCases.Transactions.Withdraw;
-using Domain.Accounts;
-using Domain.Credits;
-using Domain.ValueObjects;
 using FluentValidation.Results;
 using Persistence;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UnitTests.Transactions.Withdraw;
 using Xunit;
-using Xunit.Abstractions;
 
 public sealed class WithdrawTests : IClassFixture<StandardFixture>
 {
@@ -100,9 +93,5 @@ public sealed class WithdrawTests : IClassFixture<StandardFixture>
         ValidationResult validationResult = validator.Validate(command);
 
         Assert.False(validationResult.IsValid);
-
     }
 }
-
-
-    

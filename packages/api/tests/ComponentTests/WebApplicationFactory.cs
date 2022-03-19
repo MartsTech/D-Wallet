@@ -14,7 +14,7 @@ public sealed class WebApplicationFactory : WebApplicationFactory<Program>
         config.AddInMemoryCollection(
             new Dictionary<string, string>
             {
-                ["FeatureManagement:SQLServer"] = "false",
+                ["FeatureManagement:SQLServer"] = "true",
                 ["FeatureManagement:CurrencyExchangeModule"] = "false"
             });
     });
