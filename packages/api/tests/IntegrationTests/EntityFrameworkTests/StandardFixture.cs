@@ -11,7 +11,7 @@ public sealed class StandardFixture : IDisposable
         const string connectionString =
             "Server=localhost;User Id=root;Password=root;Database=d_wallet;";
 
-        MySqlServerVersion serverVersion = new(new Version(8, 0, 23));
+        MySqlServerVersion serverVersion = new(new Version(8, 0, 27));
 
         DbContextOptions<DataContext> options = new DbContextOptionsBuilder<DataContext>()
                 .UseMySql(connectionString, serverVersion)

@@ -12,7 +12,7 @@ public sealed class ContextFactory : IDesignTimeDbContextFactory<DataContext>
 
         DbContextOptionsBuilder<DataContext> builder = new();
 
-        var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+        var serverVersion = new MySqlServerVersion(new Version(8, 0, 27));
 
         builder.UseMySql(connStr, serverVersion);
 
@@ -46,7 +46,7 @@ public sealed class ContextFactory : IDesignTimeDbContextFactory<DataContext>
 
             connStr = $"Server={mysqlHost};Port={mysqlPort};User Id={mysqlUser};Password={mysqlPass};Database={mysqlDb};";
         }
-        
+
         return connStr;
     }
 }

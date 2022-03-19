@@ -48,7 +48,7 @@ public static class SQLServerExtensions
                     connStr = $"Server={mysqlHost};Port={mysqlPort};User Id={mysqlUser};Password={mysqlPass};Database={mysqlDb};";
                 }
 
-                var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+                var serverVersion = new MySqlServerVersion(new Version(8, 0, 27));
 
                 opt.UseMySql(connStr, serverVersion);
             });
