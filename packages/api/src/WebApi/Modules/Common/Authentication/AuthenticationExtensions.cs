@@ -40,7 +40,7 @@ public static class AuthenticationExtensions
             .AddSignInManager<SignInManager<User>>()
             .AddDefaultTokenProviders();
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWTSettings:TokenKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWTSettings:TokenKey"] ?? "super secret key"));
 
             services
                 .AddAuthentication(opt =>
