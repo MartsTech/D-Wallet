@@ -1,7 +1,6 @@
-﻿namespace UnitTests.Accounts.GetAccount;
+﻿namespace UnitTests.Accounts.GetAccounts;
 
-using Application.UseCases.Accounts.GetAccount;
-using Persistence;
+using Application.UseCases.Accounts.GetAccounts;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -16,17 +15,13 @@ public sealed class GetAccountsTests : IClassFixture<StandardFixture>
     }
 
     [Fact]
-    public async Task GetAccount_Function_Is_Successful()
+    public async Task GetAccounts_Is_Successful()
     {
-        GetAccountInput inputGetAccount = new()
-        {
-            AccountId = SeedData.DefaultAccountId.Id,
-        };
+        GetAccountsUseCase.Query command = new();
 
-        GetAccountUseCase.Query command = new(inputGetAccount);
-
-        GetAccountUseCase.Handler handler = new(
-            _fixture.AccountRepository);
+        GetAccountsUseCase.Handler handler = new(
+            _fixture.AccountRepository,
+            _fixture.UserService);
 
         var result = await handler.Handle(command, CancellationToken.None);
 

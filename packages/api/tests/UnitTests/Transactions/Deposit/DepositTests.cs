@@ -1,19 +1,11 @@
 ﻿namespace UnitTests.Transactions.Deposit;
 
-using Application.UseCases.Accounts.CloseAccount;
 using Application.UseCases.Transactions.Deposit;
-using Application.UseCases.Transactions.Withdraw;
-using Domain.Accounts;
-using Domain.Credits;
-using Domain.ValueObjects;
 using FluentValidation.Results;
 using Persistence;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UnitTests.Transactions.Withdraw;
 using Xunit;
-using Xunit.Abstractions;
 
 public sealed class DepositTests : IClassFixture<StandardFixture>
 {
