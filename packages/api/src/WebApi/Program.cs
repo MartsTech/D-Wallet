@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 using WebApi.Modules;
 using WebApi.Modules.Common;
 using WebApi.Modules.Common.Authentication;
@@ -35,4 +37,19 @@ app
         endpoints.MapControllers();
     });
 
-app.Run();
+using var scope = app.Services.CreateScope();
+
+var services = scope.ServiceProvider;
+
+try
+{
+    var context = services.GetRequiredService<DataContext>();
+    await context.Database.MigrateAsync();
+}
+catch (Exception ex)
+{
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An error ocurred during migration.");
+}
+
+await app.RunAsync();
